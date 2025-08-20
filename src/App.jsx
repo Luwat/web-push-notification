@@ -3,9 +3,10 @@ import { requestForToken } from "./config/firebase";
 
 function App() {
   const [token, setToken] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const getToken = async () => {
       const permission = await Notification.requestPermission();
       if (permission === "granted") {
@@ -19,8 +20,6 @@ function App() {
     getToken();
     setLoading(false);
   }, []);
-
-  console.log(token);
 
   return (
     <div className="App">
